@@ -1,0 +1,17 @@
+class Solution {
+    public int minStoneSum(int[] piles, int k) {
+        PriorityQueue<Integer> pq= new PriorityQueue<Integer>(Comparator.reverseOrder());
+        for(int p:piles)
+            pq.add(p);
+        for(int i=1;i<=k;i++)
+        {
+            int b=pq.poll();
+            pq.add(b-b/2);
+        }
+        System.out.println(pq);
+        int sum=0;
+        while(0<pq.size())
+            sum+=pq.poll();
+        return sum;
+    }
+}
