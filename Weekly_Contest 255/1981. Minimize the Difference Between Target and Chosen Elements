@@ -1,0 +1,23 @@
+class Solution {
+    public int minimizeTheDifference(int[][] mat, int target) {
+        int[] res = new int[1];
+        boolean[][] dp = new boolean[mat.length + 1][5000];
+        res[0] = Integer.MAX_VALUE;
+        dfs(0, mat, target, 0, res, dp);
+        return res[0];
+    }
+    
+    private void dfs(int i, int[][] mat, int target, int sum, int[] res, boolean[][] dp) {
+        if (dp[i][sum]) return;
+        if (i == mat.length) {
+            res[0] = Math.min(Math.abs(target - sum), res[0]);
+            dp[i][sum] = true;
+            return;
+        }
+        
+        for (int k = 0; k < mat[i].length; k++) {
+            dfs(i + 1, mat, target, sum + mat[i][k], res, dp);
+        }
+        dp[i][sum] = true;
+    }
+}
