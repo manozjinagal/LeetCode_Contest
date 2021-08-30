@@ -1,0 +1,28 @@
+// Using Queue, for better understanding of data structure.
+
+class Solution {
+    public int minimumDifference(int[] nums, int k) {
+        Arrays.sort(nums);
+        if(k==1)
+            return 0;
+        Queue<Integer> q= new LinkedList<>();
+        int m=Integer.MAX_VALUE;
+        int sum=0;
+        int j=0;
+        while(j<k-1)
+        {
+            q.offer(Math.abs(nums[j]-nums[j+1]));
+            sum+=Math.abs(nums[j]-nums[j+1]);
+            j++;
+        }
+        m=Math.min(m,sum);
+        for(int i=j;i<nums.length-1;i++)
+        {   
+            sum-=q.poll();
+            q.offer(Math.abs(nums[i]-nums[i+1]));
+            sum+=Math.abs(nums[i]-nums[i+1]);
+            m=Math.min(m,sum);
+        }
+        return m;
+    }
+}
