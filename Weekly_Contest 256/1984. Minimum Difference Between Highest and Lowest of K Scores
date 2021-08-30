@@ -1,4 +1,4 @@
-// Using Queue, for better understanding of data structure.
+// Using Queue, for better understanding of data structure. and trying various methods.
 
 class Solution {
     public int minimumDifference(int[] nums, int k) {
